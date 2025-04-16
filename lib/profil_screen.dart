@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -8,10 +9,41 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreen extends State<ProfileScreen> {
   int _counter = 0;
 
+  void _showConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text("Konfirmasi"),
+        content: Text("Yakin ingin menambah counter?"),
+        actions: [
+          TextButton(
+            child: Text("Batal"),
+            onPressed: () => Navigator.pop(context),
+          ),
+          TextButton(
+            child: Text("Ya"),
+            onPressed: () {
+              Navigator.pop(context);
+              _incrementCounter();
+            },
+          )
+        ],
+      ),
+    );
+  }
+
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
+
+    Fluttertoast.showToast(
+      msg: "Counter sekarang: $_counter",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Colors.blueAccent,
+      textColor: Colors.white,
+    );
   }
 
   @override
@@ -19,7 +51,7 @@ class _ProfileScreen extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('My Profile'),
-        backgroundColor: const Color.fromARGB(255, 6, 92, 240),
+        backgroundColor: Colors.blue,
       ),
       body: ListView(
         padding: EdgeInsets.all(26),
@@ -27,14 +59,13 @@ class _ProfileScreen extends State<ProfileScreen> {
           Stack(
             clipBehavior: Clip.none,
             children: [
-              // Pastikan path gambar sudah benar dan gambar sudah ada di folder assets/img/
               Container(
                 height: 270,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   image: DecorationImage(
-                    image: AssetImage('assets/img/view.jpeg'), // Pastikan path ini benar
-                    fit: BoxFit.cover, // Mengatur gambar agar mengisi area dengan baik
+                    image: AssetImage('assets/img/view.jpeg'),
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
@@ -42,12 +73,20 @@ class _ProfileScreen extends State<ProfileScreen> {
                 top: 80,
                 left: 0,
                 right: 0,
-                child: ClipOval(
-                  child: Image.asset(
-                    'assets/img/profile.jpeg', // Pastikan path ini benar
-                    width: 190,  // Ukuran lingkaran
-                    height: 190, // Ukuran lingkaran
-                    fit: BoxFit.contain, // Gambar akan diperkecil agar tidak terpotong
+                child: Center(
+                  child: Container(
+                    width: 140,
+                    height: 140,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey[200],
+                    ),
+                    child: ClipOval(
+                      child: Image.asset(
+                        'assets/img/profile.jpeg',
+                        fit: BoxFit.contain,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -79,10 +118,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    _incrementCounter();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Counter value: $_counter')),
-                    );
+                    _showConfirmationDialog();
                   },
                   child: Text('Click me'),
                 ),
