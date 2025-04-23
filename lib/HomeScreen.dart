@@ -4,10 +4,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: Text('Beranda'),
-        backgroundColor: Colors.blue,
+        title: const Text("Home", style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.pink,
       ),
       body: ListView(
         children: [
@@ -16,7 +15,7 @@ class HomeScreen extends StatelessWidget {
               Container(
                 height: 220,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 4, 7, 69).withOpacity(0.2),
+                  color: Colors.pink[100],
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(150),
                     bottomRight: Radius.circular(150),
@@ -38,8 +37,11 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.only(top: 130.0, left: 16.0, right: 16.0),
+                padding: const EdgeInsets.only(
+                  top: 130.0,
+                  left: 16.0,
+                  right: 16.0,
+                ),
                 child: Row(
                   children: [
                     _buildMenuCard(Icons.list_alt, 'List Data'),
@@ -79,7 +81,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon, size: 35, color: Colors.blue),
+              Icon(icon, size: 35, color: Colors.pink[200]),
               SizedBox(height: 10),
               Text(
                 label,

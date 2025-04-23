@@ -12,23 +12,25 @@ class _ProfileScreen extends State<ProfileScreen> {
   void _showConfirmationDialog() {
     showDialog(
       context: context,
-      builder: (_) => AlertDialog(
-        title: Text("Konfirmasi"),
-        content: Text("Yakin ingin menambah counter?"),
-        actions: [
-          TextButton(
-            child: Text("Batal"),
-            onPressed: () => Navigator.pop(context),
+      builder:
+          (_) => AlertDialog(
+            title: Text("Konfirmasi"),
+            content: Text("Yakin ingin menambah counter?"),
+            actions: [
+              TextButton(
+                child: Text("Batal"),
+
+                onPressed: () => Navigator.pop(context),
+              ),
+              TextButton(
+                child: Text("Ya"),
+                onPressed: () {
+                  Navigator.pop(context);
+                  _incrementCounter();
+                },
+              ),
+            ],
           ),
-          TextButton(
-            child: Text("Ya"),
-            onPressed: () {
-              Navigator.pop(context);
-              _incrementCounter();
-            },
-          )
-        ],
-      ),
     );
   }
 
@@ -41,7 +43,7 @@ class _ProfileScreen extends State<ProfileScreen> {
       msg: "Counter sekarang: $_counter",
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Colors.pink[50],
       textColor: Colors.white,
     );
   }
@@ -50,8 +52,9 @@ class _ProfileScreen extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Profile'),
-        backgroundColor: Colors.blue,
+        title: const Text("My Profile",
+        style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.pink,
       ),
       body: ListView(
         padding: EdgeInsets.all(26),

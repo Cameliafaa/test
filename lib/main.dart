@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'bottom_nav_screen.dart';
+import 'package:projectmp_231011701090/BottomNavScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 179, 97, 62),
+          seedColor: Colors.pink,
         ),
         useMaterial3: true,
       ),

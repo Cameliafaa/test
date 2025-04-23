@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
-import 'profil_screen.dart';
+import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
+import 'package:projectmp_231011701090/HomeScreen.dart';
+import 'package:projectmp_231011701090/ListViewScreen.dart';
+import 'package:projectmp_231011701090/ProfileSreen.dart';
 
 class BottomNavScreen extends StatefulWidget {
   @override
@@ -13,32 +15,28 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   final List<Widget> _pages = [
     HomeScreen(),
     ProfileScreen(),
+    ListViewScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        selectedItemColor: Color.fromARGB(255, 46, 11, 241),
-        unselectedItemColor: Colors.grey,
+      bottomNavigationBar: BottomBarDefault(
+        items: const [
+          TabItem(icon: Icons.home, title: 'Home'),
+          TabItem(icon: Icons.person, title: 'Profile'),
+          TabItem(icon: Icons.list, title: 'List'),
+        ],
         backgroundColor: Colors.white,
+        colorSelected: Colors.pink,
+        color: Colors.grey,
+        indexSelected: _currentIndex,
         onTap: (index) {
           setState(() {
             _currentIndex = index;
           });
         },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-        ],
       ),
     );
   }
